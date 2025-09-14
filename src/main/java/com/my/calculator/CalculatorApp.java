@@ -3,6 +3,8 @@ package com.my.calculator;
 import com.my.io.ConsoleInputHandler;
 import com.my.io.ConsoleOutputHandler;
 
+import java.text.DecimalFormat;
+
 public class CalculatorApp {
 
     public void start() {
@@ -25,7 +27,7 @@ public class CalculatorApp {
                     double operand2 = ConsoleInputHandler.getUserDoubleInput("Введите операнд: ");
                     result = calc(currentValue, operand2, operation);
                     currentValue = result;
-                    ConsoleOutputHandler.displayMsg("Результат: " + result);
+                    ConsoleOutputHandler.displayMsg("Результат: " + formatResult(currentValue));
                     break;
             }
         }
@@ -84,6 +86,11 @@ public class CalculatorApp {
             default -> 0.0;
         };
         return result;
+    }
+
+    private String formatResult(double result) {
+        DecimalFormat df = new DecimalFormat("#,##0.00");
+        return df.format(result);
     }
 
     private enum Operation {
