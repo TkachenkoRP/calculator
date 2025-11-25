@@ -77,7 +77,7 @@ public class CalculatorApp {
         }
     }
 
-    private double calc(double a, double b, Operation op) {
+    double calc(double a, double b, Operation op) {
         double result = switch (op) {
             case SUM -> sum(a, b);
             case MINUS -> sub(a, b);
@@ -88,12 +88,12 @@ public class CalculatorApp {
         return result;
     }
 
-    private String formatResult(double result) {
+    String formatResult(double result) {
         DecimalFormat df = new DecimalFormat("#,##0.00");
         return df.format(result);
     }
 
-    private enum Operation {
+    enum Operation {
         SUM,
         MINUS,
         MUL,
