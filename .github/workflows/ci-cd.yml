@@ -7,4 +7,15 @@ jobs:
   test-job:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Hello World"
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: 17
+          distribution: 'temurin'
+          cache: 'maven'
+      - name: Build project
+        run: mvn -B compile --no-transfer-progress
+      - name: Run unit tests
+        run: mvn -B test --no-transfer-progress
