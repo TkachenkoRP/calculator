@@ -15,7 +15,6 @@ class CalculatorAppTest {
 
     @Test
     void testSumOperation() {
-        // Используем рефлексию для тестирования приватных методов
         double result = calculatorApp.calc(5.0, 3.0, CalculatorApp.Operation.SUM);
         assertEquals(8.0, result, 0.001);
     }
@@ -41,19 +40,18 @@ class CalculatorAppTest {
     @Test
     void testDivideByZero() {
         double result = calculatorApp.calc(10.0, 0.0, CalculatorApp.Operation.DIV);
-        // Должен вернуть первое число при делении на ноль
         assertEquals(10.0, result, 0.001);
     }
 
     @Test
     void testFormatResultWithZero() {
         String formatted = calculatorApp.formatResult(0.0);
-        assertEquals("0,00", formatted);
+        assertEquals("0.00", formatted);
     }
 
     @Test
     void testFormatResultNegative() {
         String formatted = calculatorApp.formatResult(-123.456);
-        assertEquals("-123,46", formatted);
+        assertEquals("-123.46", formatted);
     }
 }

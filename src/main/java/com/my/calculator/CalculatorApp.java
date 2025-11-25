@@ -3,7 +3,7 @@ package com.my.calculator;
 import com.my.io.ConsoleInputHandler;
 import com.my.io.ConsoleOutputHandler;
 
-import java.text.DecimalFormat;
+import java.util.Locale;
 
 public class CalculatorApp {
 
@@ -89,8 +89,7 @@ public class CalculatorApp {
     }
 
     String formatResult(double result) {
-        DecimalFormat df = new DecimalFormat("#,##0.00");
-        return df.format(result);
+        return String.format(Locale.US, "%,.2f", result);
     }
 
     enum Operation {
