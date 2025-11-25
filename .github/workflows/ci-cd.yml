@@ -43,6 +43,7 @@ jobs:
           echo "No JAR file found"
           exit 1
           fi
+        shell: bash
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
