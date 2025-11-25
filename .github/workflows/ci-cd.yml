@@ -36,13 +36,13 @@ jobs:
       - name: Verify JAR contents
         run: |
           echo "JAR file analysis:"
-          if [ -f target/*.jar ]; then
+          if ls target/*.jar 1> /dev/null 2>&1; then
             jar tf target/*.jar | grep -E "(com/my|MANIFEST)" | head -10
             echo "JAR file created successfully"
           else
-            echo "No JAR file found"
-            exit 1
-          fi      
+          echo "No JAR file found"
+          exit 1
+          fi
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
