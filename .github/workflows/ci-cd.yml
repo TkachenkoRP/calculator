@@ -19,3 +19,15 @@ jobs:
         run: mvn -B compile --no-transfer-progress
       - name: Run unit tests
         run: mvn -B test --no-transfer-progress
+      - name: Package application
+        run: mvn -B package -DskipTests --no-transfer-progress
+      - name: Verify JAR contents
+        run: |
+          echo "JAR file analysis:"
+          if [ -f target/*.jar ]; then
+            jar tf target/*.jar | grep -E "(com/my|MANIFEST)" | head -10
+            echo "JAR file created successfully"
+          else
+            echo "No JAR file found"
+            exit 1
+          fi      
