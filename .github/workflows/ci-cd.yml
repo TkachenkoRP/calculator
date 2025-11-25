@@ -6,7 +6,7 @@ on:
 
 jobs:
   test:
-    name: Build and Test Calculator
+    name: Test Calculator
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -29,6 +29,24 @@ jobs:
 
       - name: Run unit tests
         run: mvn -B test --no-transfer-progress
+
+  build:
+    name: Build Calculator
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: 17
+          distribution: 'temurin'
+          cache: 'maven'
+
+      - name: Build project
+        run: mvn -B compile --no-transfer-progress
 
       - name: Package application
         run: mvn -B package -DskipTests --no-transfer-progress
