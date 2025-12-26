@@ -109,6 +109,7 @@ jobs:
           -DnvdApiKey=$NVD_API_KEY \
           -Dformat=ALL \
           -DfailOnError=false \
+          -DoutputDirectory=target \
           --no-transfer-progress
         shell: bash
 
@@ -116,7 +117,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: security-reports
-          path: |
-            target/dependency-check-report.html
+          path: target/dependency-check-report.html
           retention-days: 7
         if: always()
