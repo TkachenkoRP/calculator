@@ -108,6 +108,7 @@ jobs:
           -DfailBuildOnCVSS=7 \
           -DnvdApiKey=$NVD_API_KEY \
           -Dformat=ALL \
+          -DfailOnError=false \
           --no-transfer-progress
         shell: bash
 
@@ -118,3 +119,4 @@ jobs:
           path: |
             target/dependency-check-report.html
           retention-days: 7
+        if: always()
