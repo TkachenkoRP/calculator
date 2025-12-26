@@ -107,6 +107,7 @@ jobs:
           mvn -B org.owasp:dependency-check-maven:check \
           -DfailBuildOnCVSS=7 \
           -DnvdApiKey=$NVD_API_KEY \
+          -Dformat=ALL \
           --no-transfer-progress
         shell: bash
 
@@ -116,7 +117,4 @@ jobs:
           name: security-reports
           path: |
             target/dependency-check-report.html
-            target/dependency-check-report.json
-            target/dependency-check-report.xml
-            target/dependency-check-report.csv
           retention-days: 7
